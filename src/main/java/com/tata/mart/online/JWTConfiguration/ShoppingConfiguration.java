@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class ShoppingConfiguration {
 
 	public static Boolean validationWithHashMap(String keys[],HashMap<String,String> request) throws Exception{
-		Boolean status = false;
+		Boolean status = true;
 		try {
 			for(int start = 0;start<keys.length;start++) {
 				

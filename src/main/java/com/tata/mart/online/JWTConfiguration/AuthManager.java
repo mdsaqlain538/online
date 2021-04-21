@@ -12,9 +12,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.tata.mart.online.controller.RequestPojo.LoginRequest;
 import com.tata.mart.online.model.User;
@@ -58,8 +60,7 @@ public class AuthManager {
 	   
 	} 
 	 private Boolean passwordMatch(String rawPassword,String from_db_encoded) {
-		 return rawPassword.equals(from_db_encoded);
-		// return BCrypt.checkpw(rawPassword.toString(),from_db_encoded);	 
+		 return BCrypt.checkpw(rawPassword.toString(),from_db_encoded);	 
 	 }
 	 
 }

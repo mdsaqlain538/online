@@ -3,6 +3,7 @@ package com.tata.mart.online.service.UserServices.impl;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tata.mart.online.Repository.UserRepository;
@@ -36,7 +37,11 @@ public class UserServiceImpl implements UserService {
 			user.setName(signupRequest.get("name"));
 			user.setEmail(signupRequest.get("email"));
 			user.setMobile(signupRequest.get("mobile"));
-			user.setPassword(signupRequest.get("password"));
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String password = signupRequest.get("password");
+			String encodedPassword = passwordEncoder.encode(password);
+			user.setPassword(encodedPassword);
+			
 			userRepo.save(user);
 			return user;
 		}catch(Exception e) {

@@ -10,5 +10,4 @@ public class OnlineApplication {
 		SpringApplication.run(OnlineApplication.class, args);
 		System.out.println("Saqlain Patel");
 	}
-
 }

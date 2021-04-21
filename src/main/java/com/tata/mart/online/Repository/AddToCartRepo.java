@@ -15,9 +15,13 @@ import com.tata.mart.online.model.AddtoCart;
 public interface AddToCartRepo extends JpaRepository<AddtoCart,Long>{
 	
 	
+	@Query("Select sum(addCart.price) FROM AddtoCart addCart WHERE addCart.user_id=:user_id")
+	double getTotalAmountByUserId(@Param("user_id")Long user_id);
+	
+	
 	//getCartByuserId
-	@Query("SELCET addCart FROM AddtoCart addCart WHERE addCart.user_id=:user_id")
-	List<AddToCartRepo> getCartByuserId(@Param("user_id")Long user_id);
+	@Query("SELECT addCart FROM AddtoCart addCart WHERE addCart.user_id=:user_id")
+	List<AddtoCart> getCartByuserId(@Param("user_id")Long user_id);
 	
 	//test query
 	@Query("SELECT addCart FROM AddtoCart addCart")
